@@ -28,6 +28,14 @@ Output a Word file from the root directory of the repository.
 
 ```sh
 $ pandoc src/pages/guide-coding-style.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/UI5_FreeStyle_開発共通ルール.docx
+$ pandoc src/pages/guide-coding-style_en.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/UI5_FreeStyle_開発共通ルール_english.docx
+$ pandoc src/pages/guide-coding-style_vn.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/UI5_FreeStyle_開発共通ルール_vietnamese.docx
+```
+
+How to output style references for Word.
+
+```sh
+$ pandoc --print-default-data-file reference.docx > reference.docx
 ```
 
 ## Technical Element References
@@ -38,10 +46,14 @@ $ pandoc src/pages/guide-coding-style.md --metadata-file=pandoc/metadata.yaml --
 -   [tree.nathanfriend.com](https://tree.nathanfriend.com/)
 -   [Markdown 記法 チートシート - Qiita](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
 -   [Markdown で note や info を使えない理由と対処法](https://roboin.io/article/2024/01/20/note-info-not-work-in-markdown/)
--   [Pandoc official website](https://pandoc.org/)
 -   **Visual Studio Code Extensions for MarkDown**
     -   [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
     -   [Text Tables](https://marketplace.visualstudio.com/items?itemName=RomanPeshkov.vscode-text-tables)
+
+### Pandoc
+
+-   [Pandoc official website](https://pandoc.org/)
+-   [pandoc 使い方まとめ - Qiita](https://qiita.com/kannkyo/items/01d653b08f7479cbd0d3)
 
 ### Linter / Formatter / Utility
 

@@ -256,7 +256,8 @@ Prettier を使用して、`.js`、`.css`、`.xml` 形式のファイルに対�
 
 Prettier をプロジェクトのルートディレクトリにインストールする。
 
-> [!NOTE] > `@prettier/plugin-xml` は Prettier のプラグインで、.xml 形式のフォーマットをサポートしている。
+> [!NOTE] 
+> `@prettier/plugin-xml` は Prettier のプラグインで、.xml 形式のフォーマットをサポートしている。
 
 ```sh
     $ npm install --save-dev prettier @prettier/plugin-xml eslint-config-prettier npm-run-all
