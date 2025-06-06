@@ -126,6 +126,8 @@ Controller から実行されるイベントロジックのうち、各アプリ
 
 # 命名規則
 
+## 基本原則
+
 命名規則は、SAPUI5 の [JavaScript Coding Guidelines - Naming Conventions](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#naming-conventions) に準拠するものとします。  
 変数およびオブジェクトのフィールド名には、型を示すプレフィックス（接頭辞）を付ける**ハンガリアン記法**を採用します。
 
@@ -151,6 +153,8 @@ Controller から実行されるイベントロジックのうち、各アプリ
 | `p`            | Promise       | **p**Dialog     |
 
 # クラスの作成
+
+## 基本原則
 
 クラスの作成は、SAPUI5 の [JavaScript Coding Guidelines - Creating Classes](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#creating-classes) に準拠するものとします。  
 以下引用：
@@ -242,8 +246,11 @@ Controller から実行されるイベントロジックのうち、各アプリ
 # コードフォーマット
 
 コーディングにおいては、Linter と Formatter の実行を必須とします。  
-Linter と Formatter は、あらかじめ画面機能の `package.json` に含め、共通ルールを適用できるようにします。  
-開発環境（Business Application Studio や VS Code）に、後述の拡張機能をインストールすることで、Linter と Formatter を自動化することができます。
+あらかじめ、画面機能の `package.json` に設定を含め、共通ルールが適用されるようにしてください。  
+また、開発環境（Business Application Studio や VS Code）に、後述の拡張機能をインストールすることで、Linter と Formatter を自動化できます。
+
+Linter には [ESLint](https://eslint.org/)、Formatter には [Prettier](https://prettier.io/) を採用します。  
+導入および使用方法については、以下に記載します。
 
 ## Formatter
 
@@ -257,7 +264,7 @@ Prettier を使用して、`.js`、`.css`、`.xml` 形式のファイルに対�
 Prettier をプロジェクトのルートディレクトリにインストールする。
 
 > [!NOTE] 
-> `@prettier/plugin-xml` は Prettier のプラグインで、.xml 形式のフォーマットをサポートしている。
+> `@prettier/plugin-xml` は Prettier のプラグインで、.xml 形式のフォーマットをサポートしています。
 
 ```sh
     $ npm install --save-dev prettier @prettier/plugin-xml eslint-config-prettier npm-run-all
@@ -344,6 +351,9 @@ Prettier のコードフォーマットのルールを Override する。
 ```
 
 ## Linter
+
+[ESLint](https://eslint.org/) は、ソースコードを静的に解析し、コーディングスタイルやパターンに関する問題を特定するためのツールです。  
+コーディングスタイルの統一を促進し、品質の向上やバグの早期発見が期待できます。
 
 ### 導入と使用方法
 

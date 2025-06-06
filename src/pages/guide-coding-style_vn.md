@@ -126,6 +126,8 @@ Lưu trữ các hàm tiện ích bổ trợ và logic chung liên quan đến Va
 
 # Quy tắc đặt tên
 
+## Nguyên tắc cơ bản
+
 Quy tắc đặt tên tuân thủ theo [JavaScript Coding Guidelines - Naming Conventions](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#naming-conventions) của SAPUI5.  
 Tên biến và trường trong đối tượng áp dụng **ký hiệu Hungarian**, tức là thêm tiền tố biểu thị kiểu dữ liệu.
 
@@ -151,6 +153,8 @@ Tham số của các phương thức API không áp dụng quy tắc đặt tên
 | `p`       | Promise                       | **p**Dialog     |
 
 # Tạo lớp (Class)
+
+## Nguyên tắc cơ bản
 
 Việc tạo lớp phải tuân thủ theo [JavaScript Coding Guidelines - Creating Classes](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#creating-classes) của SAPUI5.  
 Tóm tắt:
@@ -242,9 +246,12 @@ tiện ích này tìm kiếm các chú thích (thẻ) trong bình luận mã ngu
 
 # Định dạng mã nguồn
 
-Trong lập trình, việc chạy Linter và Formatter là bắt buộc.  
-Linter và Formatter nên được đưa vào `package.json` của chức năng màn hình từ trước để áp dụng các quy tắc chung.  
-Bằng cách cài đặt các tiện ích mở rộng được mô tả dưới đây trong môi trường phát triển (Business Application Studio hoặc VS Code), bạn có thể tự động hóa việc chạy Linter và Formatter.
+Việc sử dụng cả Linter và Formatter là bắt buộc khi lập trình.  
+Hãy đảm bảo thêm các thiết lập cần thiết vào tệp `package.json` của chức năng giao diện người dùng để có thể áp dụng bộ quy tắc chung.  
+Bằng cách cài đặt các tiện ích mở rộng được đề cập bên dưới vào môi trường phát triển (như Business Application Studio hoặc VS Code), bạn có thể tự động hóa việc lint và format mã nguồn.
+
+Chúng tôi sử dụng [ESLint](https://eslint.org/) làm Linter và [Prettier](https://prettier.io/) làm Formatter.  
+Cách cài đặt và sử dụng được mô tả bên dưới.
 
 ## Formatter
 
@@ -345,6 +352,9 @@ Bằng cách chạy lệnh dưới đây, định dạng sẽ được áp dụn
 ```
 
 ## Linter
+
+[ESLint](https://eslint.org/) là một công cụ phân tích mã nguồn tĩnh để phát hiện các vấn đề liên quan đến kiểu viết mã và mẫu mã.  
+Nó giúp chuẩn hóa phong cách viết mã, cải thiện chất lượng mã và phát hiện sớm lỗi trong quá trình phát triển.
 
 ### Cài đặt và cách sử dụng
 
@@ -506,9 +516,3 @@ Nguyên nhân chính của lỗi hồi quy thường là do thiếu hiểu biế
 Ngoài ra, luôn kiểm tra và lưu ý phạm vi ảnh hưởng của các thay đổi.
 
 Cuối cùng, trước khi gửi pull request hoặc review, hãy chắc chắn rằng các thay đổi bạn thực hiện (chênh lệch mã nguồn) là phù hợp.
-
----
-
-版: 0.1  
-作成日: 2025/06/06  
-作成者: Hida Toshiaki

@@ -126,6 +126,8 @@ Stores auxiliary utility functions and common logic related to Validation and Me
 
 # Naming Conventions
 
+## Basic Principles
+
 Naming conventions shall comply with SAPUI5's [JavaScript Coding Guidelines - Naming Conventions](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#naming-conventions).  
 For variable and object field names, **Hungarian notation** is adopted, which adds a prefix indicating the data type.
 
@@ -151,6 +153,8 @@ API method parameters are excluded from this naming convention. Instead, use the
 | `p`       | Promise       | **p**Dialog     |
 
 # Class Creation
+
+## Basic Principles
 
 Class creation shall comply with SAPUI5's [JavaScript Coding Guidelines - Creating Classes](https://help.sap.com/docs/UI_ADD-ON_FOR_SAP_NETWEAVER_20/b4b7cba328bc480d9b373c7da9335537/eded636b85584cd586b1fe231d2b5dac.html#creating-classes).  
 Summary:
@@ -242,9 +246,13 @@ This makes it easier to monitor and manage annotations.
 
 # Code Formatting
 
-In coding, running a Linter and Formatter is mandatory.  
-The Linter and Formatter should be included in the screen feature's `package.json` in advance to apply common rules.  
-By installing the extensions described below in the development environment (Business Application Studio or VS Code), you can automate the Linter and Formatter.
+
+Running both a linter and a formatter is mandatory when coding.  
+Be sure to include the necessary settings in the `package.json` file of the screen module in advance so that a common rule set can be applied.  
+By installing the extensions described below in your development environment (such as Business Application Studio or VS Code), you can automate linting and formatting.
+
+We use [ESLint](https://eslint.org/) as the linter and [Prettier](https://prettier.io/) as the formatter.  
+Instructions for installation and usage are provided below.
 
 ## Formatter
 
@@ -345,6 +353,9 @@ By running the following command, the formatter will be applied to all target fi
 ```
 
 ## Linter
+
+[ESLint](https://eslint.org/) is a tool that performs static analysis on source code to identify issues related to coding styles and patterns.  
+It helps enforce consistent coding practices, leading to improved code quality and early detection of bugs.
 
 ### Introduction and Usage
 
@@ -506,9 +517,3 @@ To prevent these, first understand the **"purpose"** of the code before developm
 Also, always verify and keep in mind the impact scope of any changes.
 
 Finally, before submitting pull requests or reviews, always confirm that the changes you made (code diffs) are appropriate.
-
----
-
-版: 0.1  
-作成日: 2025/06/06  
-作成者: Hida Toshiaki
