@@ -460,7 +460,7 @@ Bằng cách cài đặt các extension trên và thêm các thiết lập sau v
 
 ```json:settings.json
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "eslint.validate": ["javascript"],
     "eslint.run": "onType",
@@ -482,7 +482,7 @@ Tham khảo: Nội dung cài đặt
 > Thêm các cài đặt dưới đây vào `settings.json` toàn cục của VS Code có thể khiến Linter và Formatter chạy trên các dự án không mong muốn.  
 > Đặc biệt, hãy cẩn thận khi bật `editor.formatOnSave` vì nó có thể ảnh hưởng đến các dự án khác.
 
-# （補足）Tư duy và thực hành trong phát triển
+# (Bổ sung) Tư duy và thực hành trong phát triển
 
 Dưới đây là một số tư duy và thực hành quan trọng cần chú ý trong lập trình như thông tin bổ sung.
 
