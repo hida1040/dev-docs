@@ -242,7 +242,11 @@ tiện ích này tìm kiếm các chú thích (thẻ) trong bình luận mã ngu
 
 # Kiểm thử đơn vị
 
-*Đang trong quá trình phát triển*
+Theo quy tắc này, việc viết mã kiểm thử và thực hiện unit test theo từng chức năng bằng các framework kiểm thử tiêu chuẩn của SAPUI5 như [QUnit](https://qunitjs.com/) được xem là **không cần thiết**.  
+QUnit và các framework tương tự thực sự hữu ích khi kiểm thử các hệ thống được thiết kế theo tiêu chuẩn [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition), chẳng hạn như SAPUI5.  
+Tuy nhiên, các framework hiện đại như [React](https://react.dev/), [Vue.js](https://vuejs.org/) và [Angular](https://angular.dev/) sử dụng ES Modules (ESM), và vì AMD không còn là xu hướng chính nữa, chúng tôi đánh giá rằng việc sử dụng và học tập unit test dựa trên AMD không còn ưu tiên cao.  
+Vui lòng đảm bảo thực hiện kiểm thử thủ công đầy đủ từ các khía cạnh như thao tác người dùng, liên kết dữ liệu, hiển thị và hoạt động của giao diện người dùng.  
+Ngược lại, trong quá trình phát triển ứng dụng với framework hiện đại và [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), nên tích cực áp dụng các framework kiểm thử như [Jest](https://jestjs.io/) và [Vitest](https://vitest.dev/).
 
 # Định dạng mã nguồn
 

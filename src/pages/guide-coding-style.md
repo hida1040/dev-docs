@@ -241,7 +241,12 @@ Controller から実行されるイベントロジックのうち、各アプリ
 
 # ユニットテスト
 
-※ 作成中
+本ルールにおいては、[QUnit](https://qunitjs.com/) 等の SAPUI5 標準のテストフレームワークを用いたテストコードの作成および処理単位のユニットテストの実施を**不要**とします。  
+QUnit 等は、SAPUI5 のような [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) 企画に準拠して設計されたフレームワークのテストにおいては確かに有用です。  
+しかしながら、[React](https://react.dev/) や [Vue.js](https://vuejs.org/)、[Angular](https://angular.dev/) 等のモダンなフレームワークでは ES Modules（ESM）が採用されており、現在では AMD 自体が主流ではなくなってきているため、AMD ベースのユニットテストの利用や学習の優先度は低いと判断しました。  
+ユーザー操作、データ連携、UIレンダリングと動作等の観点で、手動でのテストを十分に実施するようにしてください。  
+
+一方で、モダンなフレームワークと [UI5 Web Components](https://sap.github.io/ui5-webcomponents/) を用いたアプリケーション開発においては、[Jest](https://jestjs.io/) や [Vitest](https://vitest.dev/) 等のテストフレームワークを積極的に導入してください。
 
 # コードフォーマット
 
