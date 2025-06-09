@@ -458,7 +458,7 @@ VS Code Extension のインストールと設定を行うことで、Linter と 
 
 ```json:settings.json
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "eslint.validate": ["javascript"],
     "eslint.run": "onType",
@@ -480,7 +480,7 @@ VS Code Extension のインストールと設定を行うことで、Linter と 
 > 以下の設定を VS Code 全体の `settings.json` に追加すると、意図しないプロジェクトに対して Linter や Formatter が実行される可能性があります。  
 > 特に `editor.formatOnSave` は、他プロジェクトへの影響に十分注意した上で有効化してください。
 
-# （補足）開発における心構えと実践
+# （補足）開発におけるマインドセットと実践
 
 補足情報として、プログラミングにおいて重視すべき心構えと、実践すべきことを以下に列挙します。
 
@@ -518,5 +518,5 @@ ESLint や Formatter、TypeScript、各種フレームワークは、いわば�
 ---
 
 版: 0.1  
-作成日: 2025/06/06  
+作成日: 2025/06/09  
 作成者: Hida Toshiaki

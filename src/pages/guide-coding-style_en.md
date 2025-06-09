@@ -461,7 +461,7 @@ By installing the above extensions and adding the following settings to VS Code'
 
 ```json:settings.json
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "eslint.validate": ["javascript"],
     "eslint.run": "onType",
