@@ -242,7 +242,11 @@ This makes it easier to monitor and manage annotations.
 
 # Unit Testing
 
-*Under development*
+Under this rule, creating test code and conducting unit tests at the processing level using SAPUI5 standard test frameworks such as [QUnit](https://qunitjs.com/) is considered **unnecessary**.  
+QUnit and similar frameworks are certainly useful for testing systems designed according to the [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) specification, such as SAPUI5.  
+However, modern frameworks like [React](https://react.dev/), [Vue.js](https://vuejs.org/), and [Angular](https://angular.dev/) use ES Modules (ESM), and since AMD is no longer the mainstream, we have determined that the priority for using and learning AMD-based unit testing is low.  
+Please ensure that manual testing is thoroughly conducted from the perspectives of user operations, data integration, UI rendering, and behavior.  
+On the other hand, for application development using modern frameworks and [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), testing frameworks such as [Jest](https://jestjs.io/) and [Vitest](https://vitest.dev/) should be actively adopted.
 
 # Code Formatting
 
