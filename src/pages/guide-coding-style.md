@@ -607,5 +607,5 @@ ESLint や Formatter、TypeScript、各種フレームワークは、いわば�
 ---
 
 Version: 1.00  
-Author : Hida Toshiaki
+Author : Hida Toshiaki  
 Created: 2025/06/09  

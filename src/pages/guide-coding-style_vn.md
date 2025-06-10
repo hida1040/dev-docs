@@ -610,5 +610,5 @@ Cuối cùng, trước khi gửi pull request hoặc review, hãy chắc chắn 
 ---
 
 Version: 1.00  
-Author : Hida Toshiaki
+Author : Hida Toshiaki  
 Created: 2025/06/09  
