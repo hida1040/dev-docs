@@ -67,22 +67,22 @@ The directory structure for each application unit is defined as follows:
             └── view
 ```
 
-| Directory                  | Contents / Stored Files                          |
-| -------------------------- | ----------------------------------------------- |
-| `module/project`           | Application unit directory inside the module    |
-| `node_modules`             | External package management (npm)                |
-| `webapp`                   | Root of the UI5 application                       |
-| `controller`               | Controller files corresponding to views          |
-| `css`                      | Stylesheets (custom CSS for standard layout)      |
-| `handler/controlHandler`   | Logic for control events (abstraction of UI events) |
-| `handler/errorHandler`     | Dedicated error handling logic                     |
-| `handler/formatter`        | Logic for data formatting (for bindings)          |
-| `handler/helper`           | Auxiliary utility functions                         |
-| `i18n`                     | Files for multilingual settings                    |
-| `localService/mainService` | OData service definitions, including `metadata.xml` |
+| Directory                  | Contents / Stored Files                                      |
+| -------------------------- | ------------------------------------------------------------ |
+| `module/project`           | Application unit directory inside the module                 |
+| `node_modules`             | External package management (npm)                            |
+| `webapp`                   | Root of the UI5 application                                  |
+| `controller`               | Controller files corresponding to views                      |
+| `css`                      | Stylesheets (custom CSS for standard layout)                 |
+| `handler/controlHandler`   | Logic for control events (abstraction of UI events)          |
+| `handler/errorHandler`     | Dedicated error handling logic                               |
+| `handler/formatter`        | Logic for data formatting (for bindings)                     |
+| `handler/helper`           | Auxiliary utility functions                                  |
+| `i18n`                     | Files for multilingual settings                              |
+| `localService/mainService` | OData service definitions, including `metadata.xml`          |
 | `model`                    | Definition and initialization of JSONModel, ODataModel, etc. |
-| `test`                     | Unit test code such as QUnit                        |
-| `view`                     | XML View files                                      |
+| `test`                     | Unit test code such as QUnit                                 |
+| `view`                     | XML View files                                               |
 
 This directory structure is defined with the following objectives:
 
@@ -140,7 +140,7 @@ API method parameters are excluded from this naming convention. Instead, use the
 | --------- | ------------- | --------------- |
 | `s`       | String        | **s**Id         |
 | `o`       | Object        | **o**DomRef     |
-| `$`       | JQuery Object | **$**DomRef     |
+| `$`       | JQuery Object | $DomRef         |
 | `i` / `n` | Integer       | **i**Count      |
 | `m`       | Map / Hash    | **m**Parameters |
 | `a`       | Array         | **a**Entries    |
@@ -151,6 +151,21 @@ API method parameters are excluded from this naming convention. Instead, use the
 | `fn`      | Function      | **fn**Function  |
 | `v`       | Variant Types | **v**Variant    |
 | `p`       | Promise       | **p**Dialog     |
+
+## Constants
+
+Define constants using **uppercase snake case** (`CONSTANT_NAME`).  
+For example, strings such as model names that are frequently used in the controller should not be hardcoded in each process.  
+Instead, define them at the beginning of the second argument (function) in `sap.ui.define`.
+
+```javascript
+    "use strict";
+
+    const PROGRAM_ID = "xxxxxxxx";
+    const MAIN_TABLE_MODEL_NAME = "oDataTable";
+
+    return Controller.extend("xxxxxxxx.controller.Main", {
+```
 
 # Class Creation
 
@@ -291,13 +306,13 @@ Using annotations helps with future fixes, organizing and recording technical de
     // DEBUG: Verifying recursive logic.
 ```
 
-| Tag       | Typical Usage                      |
-| --------- | --------------------------------- |
-| `TODO:`   | Planned implementations, improvements |
-| `FIXME:`  | Bugs, temporary fixes             |
-| `NOTE:`   | Warnings, special considerations |
-| `HACK:`   | Technical debt, workarounds       |
-| `DEBUG:`  | Debug-related code during development |
+| Tag      | Typical Usage                         |
+| -------- | ------------------------------------- |
+| `TODO:`  | Planned implementations, improvements |
+| `FIXME:` | Bugs, temporary fixes                 |
+| `NOTE:`  | Warnings, special considerations      |
+| `HACK:`  | Technical debt, workarounds           |
+| `DEBUG:` | Debug-related code during development |
 
 We also recommend installing the VS Code extension [Todo-Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree),  
 which searches for annotations (tags) in source code comments and lists them.  
@@ -307,11 +322,12 @@ This makes it easier to monitor and manage annotations.
 
 # Unit Testing
 
-Under this rule, creating test code and conducting unit tests at the processing level using SAPUI5 standard test frameworks such as [QUnit](https://qunitjs.com/) is considered **unnecessary**.  
-QUnit and similar frameworks are certainly useful for testing systems designed according to the [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) specification, such as SAPUI5.  
-However, modern frameworks like [React](https://react.dev/), [Vue.js](https://vuejs.org/), and [Angular](https://angular.dev/) use ES Modules (ESM), and since AMD is no longer the mainstream, we have determined that the priority for using and learning AMD-based unit testing is low.  
-Please ensure that manual testing is thoroughly conducted from the perspectives of user operations, data integration, UI rendering, and behavior.  
-On the other hand, for application development using modern frameworks and [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), testing frameworks such as [Jest](https://jestjs.io/) and [Vitest](https://vitest.dev/) should be actively adopted.
+Under this rule, creating test code and performing unit tests at the processing level using SAPUI5 standard test frameworks such as [QUnit](https://qunitjs.com/) is considered **unnecessary**.  
+Frameworks like QUnit are certainly useful for testing systems designed based on the [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) specification, such as SAPUI5.  
+However, modern frameworks like [React](https://react.dev/), [Vue.js](https://vuejs.org/), and [Angular](https://angular.dev/) adopt ES Modules (ESM), and since AMD is no longer mainstream, we have determined that the priority for using and learning AMD-based unit testing is low.  
+Please be sure to conduct thorough manual testing, focusing on user interactions, data integration, UI rendering, and behavior.
+
+On the other hand, when developing applications with modern frameworks and [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), actively adopt test frameworks such as [Jest](https://jestjs.io/) and [Vitest](https://vitest.dev/).
 
 # Code Formatting
 
@@ -383,18 +399,18 @@ File content:
 
 Reference: Prettier Options
 
-| Option         | Type                                           | Description                                    |
-| -------------- | ---------------------------------------------- | ---------------------------------------------- |
-| `printWidth`   | `number`                                       | Maximum characters per line                    |
-| `tabWidth`     | `number`                                       | Number of spaces per indentation level        |
-| `useTabs`      | `boolean`                                      | Whether to use tabs for indentation            |
-| `semi`         | `boolean`                                      | Whether to add semicolons at the end of statements |
-| `singleQuote`  | `boolean`                                      | Whether to use single quotes for strings       |
-| `quoteProps`   | `"as-needed"` / `"consistent"` / `"preserve"` | When to quote object properties                 |
-| `trailingComma`| `"none"` / `"es5"` / `"all"`                   | Whether to add trailing commas in arrays or objects |
-| `bracketSpacing`| `boolean`                                     | Whether to add spaces inside object braces `{}` |
-| `arrowParens`  | `boolean`                                      | Whether to include parentheses around single arrow function parameters |
-| `endOfLine`    | `"lf"` / `"crlf"` / `"cr"` / `"auto"`          | Specifies the line ending character            |
+| Option           | Type                                          | Description                                                            |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------- |
+| `printWidth`     | `number`                                      | Maximum characters per line                                            |
+| `tabWidth`       | `number`                                      | Number of spaces per indentation level                                 |
+| `useTabs`        | `boolean`                                     | Whether to use tabs for indentation                                    |
+| `semi`           | `boolean`                                     | Whether to add semicolons at the end of statements                     |
+| `singleQuote`    | `boolean`                                     | Whether to use single quotes for strings                               |
+| `quoteProps`     | `"as-needed"` / `"consistent"` / `"preserve"` | When to quote object properties                                        |
+| `trailingComma`  | `"none"` / `"es5"` / `"all"`                  | Whether to add trailing commas in arrays or objects                    |
+| `bracketSpacing` | `boolean`                                     | Whether to add spaces inside object braces `{}`                        |
+| `arrowParens`    | `boolean`                                     | Whether to include parentheses around single arrow function parameters |
+| `endOfLine`      | `"lf"` / `"crlf"` / `"cr"` / `"auto"`         | Specifies the line ending character                                    |
 
 #### npm Script Setup
 
@@ -543,13 +559,13 @@ By installing the above extensions and adding the following settings to VS Code'
 
 Reference: Settings
 
-| Setting                    | Purpose                                                                      |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `editor.defaultFormatter`  | Use Prettier as the default formatter in VS Code.                           |
-| `editor.formatOnSave`      | Automatically format code upon file save.                                   |
-| `eslint.validate`          | Enable ESLint for JavaScript files in VS Code.                              |
-| `eslint.run`               | Run ESLint while typing (`"onType"`: show warnings and errors in real time).|
-| `eslint.workingDirectories`| Automatically detect the project root for ESLint (where eslint.config.js is located).|
+| Setting                     | Purpose                                                                               |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| `editor.defaultFormatter`   | Use Prettier as the default formatter in VS Code.                                     |
+| `editor.formatOnSave`       | Automatically format code upon file save.                                             |
+| `eslint.validate`           | Enable ESLint for JavaScript files in VS Code.                                        |
+| `eslint.run`                | Run ESLint while typing (`"onType"`: show warnings and errors in real time).          |
+| `eslint.workingDirectories` | Automatically detect the project root for ESLint (where eslint.config.js is located). |
 
 > [!WARNING]  
 > Adding the following settings to the global VS Code `settings.json` may cause Linter and Formatter to run on unintended projects.  

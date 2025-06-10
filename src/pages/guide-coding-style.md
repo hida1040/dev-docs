@@ -136,21 +136,35 @@ Controller から実行されるイベントロジックのうち、各アプリ
 
 なお API メソッドのパラメータは本命名規則の適用対象外です。以下のプレフィックスを使用し、**キャメルケース**で命名してください。
 
-| プレフィックス | 型            | 例              |
-| -------------- | ------------- | --------------- |
-| `s`            | String        | **s**Id         |
-| `o`            | Object        | **o**DomRef     |
-| `$`            | JQuery Object | **$**DomRef     |
-| `i` / `n`      | Integer       | **i**Count      |
-| `m`            | Map / Hash    | **m**Parameters |
-| `a`            | Array         | **a**Entries    |
-| `d`            | Date          | **d**Today      |
-| `f`            | Float         | **f**Decimal    |
-| `b`            | Boolean       | **b**Enabled    |
-| `r`            | RegExp        | **r**Pattern    |
-| `fn`           | Function      | **fn**Function  |
-| `v`            | Variant Types | **v**Variant    |
-| `p`            | Promise       | **p**Dialog     |
+| プレフィックス    | 型          | 例         |
+| --------- | ------------- | --------------- |
+| `s`       | String        | **s**Id         |
+| `o`       | Object        | **o**DomRef     |
+| `$`       | JQuery Object | $DomRef         |
+| `i` / `n` | Integer       | **i**Count      |
+| `m`       | Map / Hash    | **m**Parameters |
+| `a`       | Array         | **a**Entries    |
+| `d`       | Date          | **d**Today      |
+| `f`       | Float         | **f**Decimal    |
+| `b`       | Boolean       | **b**Enabled    |
+| `r`       | RegExp        | **r**Pattern    |
+| `fn`      | Function      | **fn**Function  |
+| `v`       | Variant Types | **v**Variant    |
+| `p`       | Promise       | **p**Dialog     |
+
+## 定数
+
+定数は大文字のスネークケース（`CONSTANT_NAME`）で定義してください。  
+たとえば、Controller 内で頻繁に使用されるモデル名などの文字列は、各処理内でハードコーディングするのではなく、`sap.ui.define` の第二引数（function）内の冒頭で定義してください。
+
+```javascript
+    "use strict";
+
+    const PROGRAM_ID = "xxxxxxxx";
+    const MAIN_TABLE_MODEL_NAME = "oDataTable";
+
+    return Controller.extend("xxxxxxxx.controller.Main", {
+```
 
 # クラスの作成
 
@@ -307,9 +321,9 @@ Controller から実行されるイベントロジックのうち、各アプリ
 # ユニットテスト
 
 本ルールにおいては、[QUnit](https://qunitjs.com/) 等の SAPUI5 標準のテストフレームワークを用いたテストコードの作成および処理単位のユニットテストの実施を**不要**とします。  
-QUnit 等は、SAPUI5 のような [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) 企画に準拠して設計されたフレームワークのテストにおいては確かに有用です。  
-しかしながら、[React](https://react.dev/) や [Vue.js](https://vuejs.org/)、[Angular](https://angular.dev/) 等のモダンなフレームワークでは ES Modules（ESM）が採用されており、現在では AMD 自体が主流ではなくなってきているため、AMD ベースのユニットテストの利用や学習の優先度は低いと判断しました。  
-ユーザー操作、データ連携、UIレンダリングと動作等の観点で、手動でのテストを十分に実施するようにしてください。  
+QUnit 等は、SAPUI5 のような [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) 規格に準拠して設計されたフレームワークのテストにおいては確かに有用です。  
+しかしながら、[React](https://react.dev/)、[Vue.js](https://vuejs.org/)、[Angular](https://angular.dev/) 等のモダンなフレームワークでは ES Modules（ESM）が採用されており、現在では AMD 自体が主流ではなくなってきているため、AMD ベースのユニットテストの利用や学習の優先度は低いと判断しました。  
+ユーザー操作、データ連携、UIレンダリングと動作等の観点で、手動でのテストを十分に実施するようにしてください。
 
 一方で、モダンなフレームワークと [UI5 Web Components](https://sap.github.io/ui5-webcomponents/) を用いたアプリケーション開発においては、[Jest](https://jestjs.io/) や [Vitest](https://vitest.dev/) 等のテストフレームワークを積極的に導入してください。
 
