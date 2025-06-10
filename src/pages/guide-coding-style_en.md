@@ -156,7 +156,9 @@ API method parameters are excluded from this naming convention. Instead, use the
 
 Define constants using **uppercase snake case** (`CONSTANT_NAME`).  
 For example, strings such as model names that are frequently used in the controller should not be hardcoded in each process.  
-Instead, define them at the beginning of the second argument (function) in `sap.ui.define`.
+Instead, define them at the beginning of the second argument (function) in `sap.ui.define`.  
+However, string arguments explicitly required by SAPUI5 APIs are excluded from this rule.  
+If the number of constants increases, consider separating them into a dedicated file for better maintainability.
 
 ```javascript
     "use strict";

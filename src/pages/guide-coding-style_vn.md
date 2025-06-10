@@ -156,7 +156,9 @@ Tham số của các phương thức API không áp dụng quy tắc đặt tên
 
 Hãy định nghĩa hằng số bằng **chữ in hoa và kiểu snake case** (`CONSTANT_NAME`).  
 Ví dụ, các chuỗi như tên model được sử dụng thường xuyên trong controller không nên được viết cứng trong từng xử lý.  
-Thay vào đó, hãy định nghĩa chúng ở phần đầu của đối số thứ hai (hàm) trong `sap.ui.define`.
+Thay vào đó, hãy định nghĩa chúng ở phần đầu của đối số thứ hai (hàm) trong `sap.ui.define`.  
+Tuy nhiên, các chuỗi được chỉ định rõ ràng bởi các API của SAPUI5 thì không cần định nghĩa dưới dạng hằng số.  
+Nếu số lượng hằng số tăng lên, hãy cân nhắc tách chúng thành một file riêng để dễ quản lý hơn.
 
 ```javascript
     "use strict";
