@@ -67,22 +67,22 @@ Cấu trúc thư mục cho từng đơn vị ứng dụng được định nghĩ
             └── view
 ```
 
-| Thư mục                   | Nội dung / Tập tin lưu trữ                         |
-| ------------------------- | ------------------------------------------------- |
-| `module/project`          | Thư mục đơn vị ứng dụng bên trong module           |
-| `node_modules`            | Quản lý gói bên ngoài (npm)                         |
-| `webapp`                  | Thư mục gốc của ứng dụng UI5                         |
-| `controller`              | Tập tin controller tương ứng với view               |
-| `css`                     | Tập tin stylesheet (CSS tùy chỉnh cho layout chuẩn) |
-| `handler/controlHandler`  | Logic xử lý sự kiện điều khiển (trừu tượng hóa sự kiện UI) |
-| `handler/errorHandler`    | Logic chuyên biệt xử lý lỗi                           |
-| `handler/formatter`       | Logic định dạng dữ liệu (dùng cho binding)           |
-| `handler/helper`          | Các hàm tiện ích hỗ trợ                              |
-| `i18n`                    | Tập tin cấu hình đa ngôn ngữ                          |
-| `localService/mainService`| Định nghĩa dịch vụ OData, bao gồm `metadata.xml`     |
-| `model`                   | Định nghĩa và khởi tạo JSONModel, ODataModel, v.v.   |
-| `test`                    | Mã kiểm thử đơn vị như QUnit                          |
-| `view`                    | Tập tin XML View                                      |
+| Thư mục                    | Nội dung / Tập tin lưu trữ                                 |
+| -------------------------- | ---------------------------------------------------------- |
+| `module/project`           | Thư mục đơn vị ứng dụng bên trong module                   |
+| `node_modules`             | Quản lý gói bên ngoài (npm)                                |
+| `webapp`                   | Thư mục gốc của ứng dụng UI5                               |
+| `controller`               | Tập tin controller tương ứng với view                      |
+| `css`                      | Tập tin stylesheet (CSS tùy chỉnh cho layout chuẩn)        |
+| `handler/controlHandler`   | Logic xử lý sự kiện điều khiển (trừu tượng hóa sự kiện UI) |
+| `handler/errorHandler`     | Logic chuyên biệt xử lý lỗi                                |
+| `handler/formatter`        | Logic định dạng dữ liệu (dùng cho binding)                 |
+| `handler/helper`           | Các hàm tiện ích hỗ trợ                                    |
+| `i18n`                     | Tập tin cấu hình đa ngôn ngữ                               |
+| `localService/mainService` | Định nghĩa dịch vụ OData, bao gồm `metadata.xml`           |
+| `model`                    | Định nghĩa và khởi tạo JSONModel, ODataModel, v.v.         |
+| `test`                     | Mã kiểm thử đơn vị như QUnit                               |
+| `view`                     | Tập tin XML View                                           |
 
 Cấu trúc thư mục này được định nghĩa với các mục tiêu sau:
 
@@ -140,7 +140,7 @@ Tham số của các phương thức API không áp dụng quy tắc đặt tên
 | --------- | ----------------------------- | --------------- |
 | `s`       | Chuỗi (String)                | **s**Id         |
 | `o`       | Đối tượng                     | **o**DomRef     |
-| `$`       | Đối tượng JQuery              | **$**DomRef     |
+| `$`       | Đối tượng JQuery              | $DomRef         |
 | `i` / `n` | Số nguyên (Integer)           | **i**Count      |
 | `m`       | Bản đồ / Hash                 | **m**Parameters |
 | `a`       | Mảng (Array)                  | **a**Entries    |
@@ -151,6 +151,21 @@ Tham số của các phương thức API không áp dụng quy tắc đặt tên
 | `fn`      | Hàm (Function)                | **fn**Function  |
 | `v`       | Kiểu biến đổi (Variant Types) | **v**Variant    |
 | `p`       | Promise                       | **p**Dialog     |
+
+## Hằng số
+
+Hãy định nghĩa hằng số bằng **chữ in hoa và kiểu snake case** (`CONSTANT_NAME`).  
+Ví dụ, các chuỗi như tên model được sử dụng thường xuyên trong controller không nên được viết cứng trong từng xử lý.  
+Thay vào đó, hãy định nghĩa chúng ở phần đầu của đối số thứ hai (hàm) trong `sap.ui.define`.
+
+```javascript
+    "use strict";
+
+    const PROGRAM_ID = "xxxxxxxx";
+    const MAIN_TABLE_MODEL_NAME = "oDataTable";
+
+    return Controller.extend("xxxxxxxx.controller.Main", {
+```
 
 # Tạo lớp (Class)
 
@@ -170,6 +185,71 @@ Tóm tắt:
 - Kết hợp constructor, các phương thức và thành viên tĩnh trong một file JS duy nhất, đặt tên và vị trí theo tên đầy đủ (fully qualified name) của lớp. Đây là điều kiện tiên quyết để tải lớp.
 - Lớp tĩnh không có constructor và sử dụng object literal. Các lớp này không thể kế thừa. Nếu cần kế thừa, hãy dùng lớp thường và tạo singleton bên trong.
 - Không sử dụng `SuperClass.extend(…)` cho các lớp con.
+
+## Getter and Setter
+
+Các hàm thường được sử dụng trong lập trình SAPUI5 nên được khai báo rõ ràng và sử dụng dưới dạng **getter** và **setter**.  
+Tiền tố của tên hàm nên là `get` / `set`, và nếu cùng tham chiếu đến một đối tượng, hãy giữ tên gọi thống nhất.  
+Ngoài ra, hãy gom tất cả các khai báo getter và setter vào cùng một vị trí để dễ quản lý.
+
+```javascript
+    // Getter
+
+    /**
+     * Get view model by model name
+     * @param {String} sModelName
+     * @returns {sap.ui.model.Model}
+     */
+    _getModelByName: function (sModelName) {
+        return this.getView().getModel(sModelName);
+    },
+
+    /**
+     * Get main table view model
+     * @returns {sap.ui.model.Model}
+     */
+    _getTableModel: function () {
+        return this.getView().getModel(MAIN_TABLE_MODEL_NAME);
+    },
+
+    /**
+     * Get context odata table model
+     * @param {sap.ui.table.Table} oTable
+     * @returns {Object}
+     */
+    _getTableContextData: function (oTable) {
+        const aData = [];
+        const oBinding = oTable.getBinding("rows");
+        if (!oBinding) return aData;
+
+        const aDataLength = oBinding.oList.length;
+        const aTableContext = oTable.getBinding("rows").getContexts(0, aDataLength);
+        aTableContext.forEach((oTableContextItem) => {
+            aData.push(oTableContextItem.getObject());
+        });
+        return aData;
+    },
+
+    // Setter
+
+    /**
+     * Set odata convert to json model with the specified model name to view
+     * @param {Object} oDataModel
+     * @param {String} sModelName
+     */
+    _setModelByName: function (oDataModel, sModelName) {
+        this.getView().setModel(new JSONModel(oDataModel.results), sModelName);
+    },
+
+    /**
+     * Set odata convert to json model to main table view
+     * @param {Object[]}
+     */
+    _setTableModel: function (oData) {
+        this._getScreenModel().setProperty("/RowCount", oData.length);
+        this.getView().setModel(new JSONModel(oData), MAIN_TABLE_MODEL_NAME);
+    },
+```
 
 # Bình luận và Tài liệu
 
@@ -226,13 +306,13 @@ Việc ghi chú giúp cho việc sửa đổi trong tương lai, tổ chức và
     // DEBUG: Verifying recursive logic.
 ```
 
-| Thẻ       | Ví dụ sử dụng                     |
-| --------- | -------------------------------- |
-| `TODO:`   | Các điểm cần triển khai, cải tiến |
-| `FIXME:`  | Lỗi, xử lý tạm thời              |
-| `NOTE:`   | Cảnh báo, tình huống đặc biệt    |
-| `HACK:`   | Nợ kỹ thuật, biện pháp tránh     |
-| `DEBUG:`  | Đoạn mã dùng để gỡ lỗi trong phát triển |
+| Thẻ      | Ví dụ sử dụng                           |
+| -------- | --------------------------------------- |
+| `TODO:`  | Các điểm cần triển khai, cải tiến       |
+| `FIXME:` | Lỗi, xử lý tạm thời                     |
+| `NOTE:`  | Cảnh báo, tình huống đặc biệt           |
+| `HACK:`  | Nợ kỹ thuật, biện pháp tránh            |
+| `DEBUG:` | Đoạn mã dùng để gỡ lỗi trong phát triển |
 
 Chúng tôi cũng khuyến nghị cài đặt tiện ích mở rộng VS Code [Todo-Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree),  
 tiện ích này tìm kiếm các chú thích (thẻ) trong bình luận mã nguồn và liệt kê chúng.  
@@ -243,10 +323,11 @@ tiện ích này tìm kiếm các chú thích (thẻ) trong bình luận mã ngu
 # Kiểm thử đơn vị
 
 Theo quy tắc này, việc viết mã kiểm thử và thực hiện unit test theo từng chức năng bằng các framework kiểm thử tiêu chuẩn của SAPUI5 như [QUnit](https://qunitjs.com/) được xem là **không cần thiết**.  
-QUnit và các framework tương tự thực sự hữu ích khi kiểm thử các hệ thống được thiết kế theo tiêu chuẩn [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition), chẳng hạn như SAPUI5.  
-Tuy nhiên, các framework hiện đại như [React](https://react.dev/), [Vue.js](https://vuejs.org/) và [Angular](https://angular.dev/) sử dụng ES Modules (ESM), và vì AMD không còn là xu hướng chính nữa, chúng tôi đánh giá rằng việc sử dụng và học tập unit test dựa trên AMD không còn ưu tiên cao.  
-Vui lòng đảm bảo thực hiện kiểm thử thủ công đầy đủ từ các khía cạnh như thao tác người dùng, liên kết dữ liệu, hiển thị và hoạt động của giao diện người dùng.  
-Ngược lại, trong quá trình phát triển ứng dụng với framework hiện đại và [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), nên tích cực áp dụng các framework kiểm thử như [Jest](https://jestjs.io/) và [Vitest](https://vitest.dev/).
+Các framework như QUnit thực sự hữu ích khi kiểm thử các hệ thống được thiết kế dựa trên tiêu chuẩn [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition), chẳng hạn như SAPUI5.  
+Tuy nhiên, các framework hiện đại như [React](https://react.dev/), [Vue.js](https://vuejs.org/), và [Angular](https://angular.dev/) đều sử dụng ES Modules (ESM), và do AMD hiện không còn là xu hướng chính, chúng tôi đánh giá rằng mức độ ưu tiên cho việc học và sử dụng unit test dựa trên AMD là thấp.  
+Hãy đảm bảo thực hiện kiểm thử thủ công đầy đủ với các tiêu chí như thao tác người dùng, liên kết dữ liệu, hiển thị giao diện và hành vi của hệ thống.
+
+Ngược lại, trong phát triển ứng dụng sử dụng framework hiện đại và [UI5 Web Components](https://sap.github.io/ui5-webcomponents/), bạn nên tích cực áp dụng các framework kiểm thử như [Jest](https://jestjs.io/) và [Vitest](https://vitest.dev/).
 
 # Định dạng mã nguồn
 
@@ -317,18 +398,18 @@ Nội dung file:
 
 Tham khảo: Các tùy chọn Prettier
 
-| Tùy chọn       | Kiểu                                          | Mô tả                                         |
-| -------------- | --------------------------------------------- | ---------------------------------------------- |
-| `printWidth`   | `number`                                      | Số ký tự tối đa trên một dòng                  |
-| `tabWidth`     | `number`                                      | Số khoảng trắng cho mỗi cấp thụt lề           |
-| `useTabs`      | `boolean`                                     | Có sử dụng tab cho thụt lề không              |
-| `semi`         | `boolean`                                     | Có thêm dấu chấm phẩy ở cuối câu lệnh không   |
-| `singleQuote`  | `boolean`                                     | Có dùng dấu nháy đơn cho chuỗi hay không       |
-| `quoteProps`   | `"as-needed"` / `"consistent"` / `"preserve"`| Khi nào dùng dấu nháy cho thuộc tính đối tượng |
-| `trailingComma`| `"none"` / `"es5"` / `"all"`                  | Có thêm dấu phẩy ở cuối mảng hoặc đối tượng không |
-| `bracketSpacing`| `boolean`                                    | Có thêm khoảng trắng bên trong dấu ngoặc nhọn `{}` |
-| `arrowParens`  | `boolean`                                     | Có thêm dấu ngoặc quanh tham số hàm mũi tên đơn |
-| `endOfLine`    | `"lf"` / `"crlf"` / `"cr"` / `"auto"`         | Xác định ký tự xuống dòng                        |
+| Tùy chọn         | Kiểu                                          | Mô tả                                              |
+| ---------------- | --------------------------------------------- | -------------------------------------------------- |
+| `printWidth`     | `number`                                      | Số ký tự tối đa trên một dòng                      |
+| `tabWidth`       | `number`                                      | Số khoảng trắng cho mỗi cấp thụt lề                |
+| `useTabs`        | `boolean`                                     | Có sử dụng tab cho thụt lề không                   |
+| `semi`           | `boolean`                                     | Có thêm dấu chấm phẩy ở cuối câu lệnh không        |
+| `singleQuote`    | `boolean`                                     | Có dùng dấu nháy đơn cho chuỗi hay không           |
+| `quoteProps`     | `"as-needed"` / `"consistent"` / `"preserve"` | Khi nào dùng dấu nháy cho thuộc tính đối tượng     |
+| `trailingComma`  | `"none"` / `"es5"` / `"all"`                  | Có thêm dấu phẩy ở cuối mảng hoặc đối tượng không  |
+| `bracketSpacing` | `boolean`                                     | Có thêm khoảng trắng bên trong dấu ngoặc nhọn `{}` |
+| `arrowParens`    | `boolean`                                     | Có thêm dấu ngoặc quanh tham số hàm mũi tên đơn    |
+| `endOfLine`      | `"lf"` / `"crlf"` / `"cr"` / `"auto"`         | Xác định ký tự xuống dòng                          |
 
 #### Cấu hình npm Script
 
@@ -477,13 +558,13 @@ Bằng cách cài đặt các extension trên và thêm các thiết lập sau v
 
 Tham khảo: Nội dung cài đặt
 
-| Cài đặt                    | Mục đích                                                                     |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `editor.defaultFormatter`  | Sử dụng Prettier làm trình định dạng mặc định trong VS Code.                |
-| `editor.formatOnSave`      | Tự động định dạng mã khi lưu tệp.                                           |
-| `eslint.validate`          | Kích hoạt ESLint cho các tệp JavaScript trong VS Code.                      |
-| `eslint.run`               | Chạy ESLint khi nhập liệu (`"onType"`: hiển thị cảnh báo và lỗi theo thời gian thực).|
-| `eslint.workingDirectories`| Tự động phát hiện thư mục gốc dự án cho ESLint (nơi đặt eslint.config.js).  |
+| Cài đặt                     | Mục đích                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| `editor.defaultFormatter`   | Sử dụng Prettier làm trình định dạng mặc định trong VS Code.                          |
+| `editor.formatOnSave`       | Tự động định dạng mã khi lưu tệp.                                                     |
+| `eslint.validate`           | Kích hoạt ESLint cho các tệp JavaScript trong VS Code.                                |
+| `eslint.run`                | Chạy ESLint khi nhập liệu (`"onType"`: hiển thị cảnh báo và lỗi theo thời gian thực). |
+| `eslint.workingDirectories` | Tự động phát hiện thư mục gốc dự án cho ESLint (nơi đặt eslint.config.js).            |
 
 > [!WARNING]  
 > Thêm các cài đặt dưới đây vào `settings.json` toàn cục của VS Code có thể khiến Linter và Formatter chạy trên các dự án không mong muốn.  
