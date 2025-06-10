@@ -186,7 +186,7 @@ Tóm tắt:
 - Lớp tĩnh không có constructor và sử dụng object literal. Các lớp này không thể kế thừa. Nếu cần kế thừa, hãy dùng lớp thường và tạo singleton bên trong.
 - Không sử dụng `SuperClass.extend(…)` cho các lớp con.
 
-## Getter and Setter
+# Getter và Setter
 
 Các hàm thường được sử dụng trong lập trình SAPUI5 nên được khai báo rõ ràng và sử dụng dưới dạng **getter** và **setter**.  
 Tiền tố của tên hàm nên là `get` / `set`, và nếu cùng tham chiếu đến một đối tượng, hãy giữ tên gọi thống nhất.  

@@ -186,7 +186,7 @@ Summary:
 - Static classes have no constructor and use object literals. These classes cannot be extended. If inheritance is needed, use a normal class and create a singleton inside it.
 - Do not use `SuperClass.extend(…)` for subclasses.
 
-## Getter and Setter
+# Getter and Setter
 
 Functions frequently used in SAPUI5 programming should be explicitly declared and used as **getters** and **setters**.  
 Prefix the function names with `get` / `set`, and if they refer to the same target, keep the naming consistent thereafter.  
