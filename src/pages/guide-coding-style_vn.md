@@ -606,3 +606,9 @@ Nguyên nhân chính của lỗi hồi quy thường là do thiếu hiểu biế
 Ngoài ra, luôn kiểm tra và lưu ý phạm vi ảnh hưởng của các thay đổi.
 
 Cuối cùng, trước khi gửi pull request hoặc review, hãy chắc chắn rằng các thay đổi bạn thực hiện (chênh lệch mã nguồn) là phù hợp.
+
+---
+
+Version: 1.00  
+Author : Hida Toshiaki
+Created: 2025/06/09  

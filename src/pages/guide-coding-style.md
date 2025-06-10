@@ -606,6 +606,6 @@ ESLint や Formatter、TypeScript、各種フレームワークは、いわば�
 
 ---
 
-版: 0.1  
-作成日: 2025/06/09  
-作成者: Hida Toshiaki
+Version: 1.00  
+Author : Hida Toshiaki
+Created: 2025/06/09  

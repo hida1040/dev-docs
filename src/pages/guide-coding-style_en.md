@@ -607,3 +607,9 @@ To prevent these, first understand the **"purpose"** of the code before developm
 Also, always verify and keep in mind the impact scope of any changes.
 
 Finally, before submitting pull requests or reviews, always confirm that the changes you made (code diffs) are appropriate.
+
+---
+
+Version: 1.00  
+Author : Hida Toshiaki
+Created: 2025/06/09  
