@@ -171,6 +171,71 @@ Summary:
 - Static classes have no constructor and use object literals. These classes cannot be extended. If inheritance is needed, use a normal class and create a singleton inside it.
 - Do not use `SuperClass.extend(…)` for subclasses.
 
+## Getter and Setter
+
+Functions frequently used in SAPUI5 programming should be explicitly declared and used as **getters** and **setters**.  
+Prefix the function names with `get` / `set`, and if they refer to the same target, keep the naming consistent thereafter.  
+Also, organize all getter and setter definitions together in a single place.
+
+```javascript
+    // Getter
+
+    /**
+     * Get view model by model name
+     * @param {String} sModelName
+     * @returns {sap.ui.model.Model}
+     */
+    _getModelByName: function (sModelName) {
+        return this.getView().getModel(sModelName);
+    },
+
+    /**
+     * Get main table view model
+     * @returns {sap.ui.model.Model}
+     */
+    _getTableModel: function () {
+        return this.getView().getModel(MAIN_TABLE_MODEL_NAME);
+    },
+
+    /**
+     * Get context odata table model
+     * @param {sap.ui.table.Table} oTable
+     * @returns {Object}
+     */
+    _getTableContextData: function (oTable) {
+        const aData = [];
+        const oBinding = oTable.getBinding("rows");
+        if (!oBinding) return aData;
+
+        const aDataLength = oBinding.oList.length;
+        const aTableContext = oTable.getBinding("rows").getContexts(0, aDataLength);
+        aTableContext.forEach((oTableContextItem) => {
+            aData.push(oTableContextItem.getObject());
+        });
+        return aData;
+    },
+
+    // Setter
+
+    /**
+     * Set odata convert to json model with the specified model name to view
+     * @param {Object} oDataModel
+     * @param {String} sModelName
+     */
+    _setModelByName: function (oDataModel, sModelName) {
+        this.getView().setModel(new JSONModel(oDataModel.results), sModelName);
+    },
+
+    /**
+     * Set odata convert to json model to main table view
+     * @param {Object[]}
+     */
+    _setTableModel: function (oData) {
+        this._getScreenModel().setProperty("/RowCount", oData.length);
+        this.getView().setModel(new JSONModel(oData), MAIN_TABLE_MODEL_NAME);
+    },
+```
+
 # Comments and Documentation
 
 The rules for comments in source code are defined as follows.

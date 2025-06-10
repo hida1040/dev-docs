@@ -171,6 +171,71 @@ Controller から実行されるイベントロジックのうち、各アプリ
 -   静的クラスにはコンストラクタがなく、オブジェクトリテラルを使用します。このようなクラスの継承パターンはありません。継承が必要な場合は、通常のクラスを使用し、クラス内でシングルトンを作成してください。
 -   サブクラスには `SuperClass.extend(…)` を使用しないでください。
 
+# Getter と Setter
+
+プログラミングにおいてよく使用される SAPUI5 の関数などは、**getter** および **setter** として明確に宣言し、使用してください。  
+関数名の接頭辞に `get` / `set` を付け、参照先が同一であれば以降の命名も統一してください。  
+また、getter / setter の記述は、それぞれ一箇所にまとめて整理するようにしてください。
+
+```javascript
+    // Getter
+
+    /**
+     * Get view model by model name
+     * @param {String} sModelName
+     * @returns {sap.ui.model.Model}
+     */
+    _getModelByName: function (sModelName) {
+        return this.getView().getModel(sModelName);
+    },
+
+    /**
+     * Get main table view model
+     * @returns {sap.ui.model.Model}
+     */
+    _getTableModel: function () {
+        return this.getView().getModel(MAIN_TABLE_MODEL_NAME);
+    },
+
+    /**
+     * Get context odata table model
+     * @param {sap.ui.table.Table} oTable
+     * @returns {Object}
+     */
+    _getTableContextData: function (oTable) {
+        const aData = [];
+        const oBinding = oTable.getBinding("rows");
+        if (!oBinding) return aData;
+
+        const aDataLength = oBinding.oList.length;
+        const aTableContext = oTable.getBinding("rows").getContexts(0, aDataLength);
+        aTableContext.forEach((oTableContextItem) => {
+            aData.push(oTableContextItem.getObject());
+        });
+        return aData;
+    },
+
+    // Setter
+
+    /**
+     * Set odata convert to json model with the specified model name to view
+     * @param {Object} oDataModel
+     * @param {String} sModelName
+     */
+    _setModelByName: function (oDataModel, sModelName) {
+        this.getView().setModel(new JSONModel(oDataModel.results), sModelName);
+    },
+
+    /**
+     * Set odata convert to json model to main table view
+     * @param {Object[]}
+     */
+    _setTableModel: function (oData) {
+        this._getScreenModel().setProperty("/RowCount", oData.length);
+        this.getView().setModel(new JSONModel(oData), MAIN_TABLE_MODEL_NAME);
+    },
+```
+
 # コメントとドキュメンテーション
 
 ソースコード上のコメントルールに関して下記のとおり定義します。

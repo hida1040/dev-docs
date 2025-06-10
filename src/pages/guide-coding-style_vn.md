@@ -171,6 +171,71 @@ Tóm tắt:
 - Lớp tĩnh không có constructor và sử dụng object literal. Các lớp này không thể kế thừa. Nếu cần kế thừa, hãy dùng lớp thường và tạo singleton bên trong.
 - Không sử dụng `SuperClass.extend(…)` cho các lớp con.
 
+## Getter and Setter
+
+Các hàm thường được sử dụng trong lập trình SAPUI5 nên được khai báo rõ ràng và sử dụng dưới dạng **getter** và **setter**.  
+Tiền tố của tên hàm nên là `get` / `set`, và nếu cùng tham chiếu đến một đối tượng, hãy giữ tên gọi thống nhất.  
+Ngoài ra, hãy gom tất cả các khai báo getter và setter vào cùng một vị trí để dễ quản lý.
+
+```javascript
+    // Getter
+
+    /**
+     * Get view model by model name
+     * @param {String} sModelName
+     * @returns {sap.ui.model.Model}
+     */
+    _getModelByName: function (sModelName) {
+        return this.getView().getModel(sModelName);
+    },
+
+    /**
+     * Get main table view model
+     * @returns {sap.ui.model.Model}
+     */
+    _getTableModel: function () {
+        return this.getView().getModel(MAIN_TABLE_MODEL_NAME);
+    },
+
+    /**
+     * Get context odata table model
+     * @param {sap.ui.table.Table} oTable
+     * @returns {Object}
+     */
+    _getTableContextData: function (oTable) {
+        const aData = [];
+        const oBinding = oTable.getBinding("rows");
+        if (!oBinding) return aData;
+
+        const aDataLength = oBinding.oList.length;
+        const aTableContext = oTable.getBinding("rows").getContexts(0, aDataLength);
+        aTableContext.forEach((oTableContextItem) => {
+            aData.push(oTableContextItem.getObject());
+        });
+        return aData;
+    },
+
+    // Setter
+
+    /**
+     * Set odata convert to json model with the specified model name to view
+     * @param {Object} oDataModel
+     * @param {String} sModelName
+     */
+    _setModelByName: function (oDataModel, sModelName) {
+        this.getView().setModel(new JSONModel(oDataModel.results), sModelName);
+    },
+
+    /**
+     * Set odata convert to json model to main table view
+     * @param {Object[]}
+     */
+    _setTableModel: function (oData) {
+        this._getScreenModel().setProperty("/RowCount", oData.length);
+        this.getView().setModel(new JSONModel(oData), MAIN_TABLE_MODEL_NAME);
+    },
+```
+
 # Bình luận và Tài liệu
 
 Các quy tắc về bình luận trong mã nguồn được định nghĩa như sau.
