@@ -1,6 +1,6 @@
 # Background and Purpose
 
-This coding guideline aims to reduce discrepancies among engineers in SAP Fiori FreeStyle application development, striving to balance both quality and efficiency.  
+This coding guideline aims to reduce discrepancies among engineers in SAP Fiori FreeStyle アプリケーション development, striving to balance both quality and efficiency.  
 During past team developments, issues have arisen such as inconsistent code readability, uneven comment quality, and overly bloated Controllers due to logic being concentrated there.  
 These problems tend to cause bugs, regressions, and hinder smooth handovers between team members.  
 By establishing coding rules, we aim to prevent such issues in advance, while also providing guidance for individual skill improvement—especially for beginners—and a framework for learning.
