@@ -387,7 +387,7 @@ Nội dung file:
 {
     "printWidth": 120,
     "tabWidth": 4,
-    "useTabs": true,
+    "useTabs": false,
     "semi": true,
     "singleQuote": false,
     "quoteProps": "as-needed",
