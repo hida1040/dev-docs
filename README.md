@@ -33,8 +33,8 @@ Output a Word file from the root directory of the repository.
 
 ```sh
 $ pandoc src/pages/guide-coding-style.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/SAPUI5_FreeStyle_開発共通ルール.docx
-$ pandoc src/pages/guide-coding-style_en.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/SAPUI5_Freestyle_Development_Rules_english.docx
-$ pandoc src/pages/guide-coding-style_vn.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/SAPUI5_Freestyle_Development_Rules_vietnamese.docx
+$ pandoc src/pages/guide-coding-style_en.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/english_SAPUI5_FreeStyle_開発共通ルール.docx
+$ pandoc src/pages/guide-coding-style_vn.md --metadata-file=pandoc/metadata.yaml --resource-path=./src/pages/ --highlight-style=breezeDark --reference-doc=pandoc/reference.docx -o output/vietnamese_SAPUI5_FreeStyle_開発共通ルール.docx
 ```
 
 How to output style references for Word.

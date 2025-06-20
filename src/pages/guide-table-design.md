@@ -12,6 +12,7 @@
 | ---------------- | --------- | --------------------- |
 | 文字列           | Left      | `Begin`               |
 | 単一文字          | Center    | `Center`              |
+| フラグ           | Center    | `Center`              |
 | 日付             | Left      | `Begin`               |
 | 数値             | Right     | `End`                 |
 | 数量             | Right     | `End`                 |
