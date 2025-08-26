@@ -471,6 +471,10 @@ import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 
 export default [
+    // Ignore unit test code.
+    {
+        ignores: ["webapp/test/**"]
+    },
 	// Apply ESLint’s standard recommended configuration
 	js.configs.recommended,
 
@@ -532,6 +536,27 @@ To analyze all `.js` files under the `webapp` directory:
 > [!NOTE]  
 > Adding the `--fix` option to the above command will automatically fix the error points.  
 > *Note: These are mechanical fixes.*
+
+#### When running static analysis from an npm script
+
+Add the following npm scripts to `package.json`.
+
+```json:package.json
+{
+    ...
+    "scripts": {
+        ...
+        "lint": "eslint webapp/**/*.js",
+    },
+    ...
+}
+```
+
+Then execute the following command.
+
+```bash
+    $ npm run lint
+```
 
 ## Using VS Code Extensions
 

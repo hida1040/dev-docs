@@ -468,6 +468,10 @@ import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 
 export default [
+    // Ignore unit test code.
+    {
+        ignores: ["webapp/test/**"]
+    },
 	// Apply ESLint’s standard recommended configuration
 	js.configs.recommended,
 
@@ -528,6 +532,27 @@ webapp 下のすべての.js ファイルに対し解析する場合
 
 > [!NOTE]
 > 上記のコマンドに `--fix` オプションを追加すると、error 箇所をまとめて修正することが出来ます。※ 機械的な修正
+
+#### npm スクリプト から静的解析を実行する場合
+
+`package.json` に以下の npm Scripts を記述する。
+
+```json:package.json
+{
+    ...
+    "scripts": {
+        ...
+        "lint": "eslint webapp/**/*.js",
+    },
+    ...
+}
+```
+
+以下のコマンドを実行。
+
+```bash
+    $ npm run lint
+```
 
 ## VS Code Extension の使用
 
