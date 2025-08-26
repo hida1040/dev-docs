@@ -470,6 +470,10 @@ import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 
 export default [
+    // Ignore unit test code.
+    {
+        ignores: ["webapp/test/**"]
+    },
 	// Apply ESLint’s standard recommended configuration
 	js.configs.recommended,
 
@@ -531,6 +535,27 @@ Ví dụ kết quả phân tích:
 > [!NOTE]  
 > Nếu thêm tùy chọn `--fix` vào lệnh trên, các lỗi sẽ được tự động sửa cùng lúc.  
 > *Lưu ý: Đây là các sửa chữa mang tính chất tự động.*
+
+#### Khi chạy phân tích tĩnh từ npm script
+
+Thêm các npm script sau vào `package.json`.
+
+```json:package.json
+{
+    ...
+    "scripts": {
+        ...
+        "lint": "eslint webapp/**/*.js",
+    },
+    ...
+}
+```
+
+Sau đó, thực thi lệnh dưới đây.
+
+```bash
+    $ npm run lint
+```
 
 ## Sử dụng Extension của VS Code
 
