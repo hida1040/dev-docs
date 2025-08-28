@@ -1,32 +1,32 @@
-# INPUT形式
-Fiori FreeStyle アプリケーション で主に使用するINPUT形式のパターンについて列挙する。  
+# Định dạng INPUT
+Phần này liệt kê các mẫu định dạng INPUT chính được sử dụng trong các ứng dụng Fiori FreeStyle.
 
-## 全体
+## Tổng quan
 
-### Alignment
-Text 表記 および 各種入力形式に応じた Input の Alignment を下表のとおり定める。  
-※ 下表に指定がないものは原則 Alignment = Left とする。
+### Căn chỉnh
+Căn chỉnh của các phần Text và các loại Input khác nhau được xác định theo bảng dưới đây.  
+※ Đối với các mục không được liệt kê trong bảng, căn chỉnh mặc định là Left.
 
 | Item type        | Alignment | sap.ui.core.TextAlign |
 | ---------------- | --------- | --------------------- |
-| 文字列           | Left      | `Begin`               |
-| 日付             | Left      | `Begin`               |
-| 数値             | Right     | `End`                 |
-| 数量             | Right     | `End`                 |
-| 金額             | Right     | `End`                 |
-| 通貨             | Left      | `Begin`               |
+| Chuỗi            | Left      | `Begin`               |
+| Ngày              | Left      | `Begin`               |
+| Số                | Right     | `End`                 |
+| Số lượng          | Right     | `End`                 |
+| Số tiền           | Right     | `End`                 |
+| Tiền tệ           | Left      | `Begin`               |
 
-**Reference:** [sap.ui.core.TextAlign](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui.core.TextAlign)
+**Tham khảo:** [sap.ui.core.TextAlign](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui.core.TextAlign)
 
-## 必須入力項目
+## Trường nhập bắt buộc
 
-必須入力項目には、項目名に**赤字**の Suffix (*) を追加する。
+Đối với các trường nhập bắt buộc, thêm hậu tố **màu đỏ** (*) vào tên trường.
 
-### 検索条件部(FilterBar)
+### Phần điều kiện tìm kiếm (FilterBar)
 ![Required Input - FilterBar](../static/img/sap.m.Input.required.png)
 
-対象となる Input の `FilterGroupItem` に `mandatory=true` を設定する。  
-バリデーションは検索処理時に実行すること。
+Đặt `mandatory=true` cho `FilterGroupItem` của Input tương ứng.  
+Việc xác thực nên được thực hiện trong quá trình tìm kiếm.
 
 ```xml
     <!-- e.g. -->
@@ -51,12 +51,12 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
 
 ```
 
-### 一覧表示部(Table)
+### Phần hiển thị danh sách (Table)
 
 ![Required Input - Table Column](../static/img/sap.ui.table.column.required.png)
 
-対象となる Input に対応する `Label` に `required=true` を設定する。  
-バリデーションは登録処理時に実行すること。
+Đặt `required=true` trên `Label` tương ứng với Input mục tiêu.  
+Việc xác thực nên được thực hiện trong quá trình đăng ký.
 
 ```xml
     <!-- e.g. -->
@@ -91,19 +91,18 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
 
 ```
 
+## Yêu cầu nhập ít nhất một trường (Tìm kiếm)
 
-## いずれか必須入力(検索)
+**※ Yêu cầu riêng của khách hàng. Không phải là chuẩn Fiori.**  
+Khi ít nhất một trường trong nhiều trường ở phần điều kiện tìm kiếm là bắt buộc, thêm hậu tố **màu xanh** (*) vào tên các trường.
 
-**※ お客様固有の要件。Fiori 標準仕様ではない。**  
-検索条件部において複数の項目に対していずれか一つ以上の入力を必須とする場合、項目名に**青字**の Suffix (*) を追加する。  
-
-### 検索条件部(FilterBar)
+### Phần điều kiện tìm kiếm (FilterBar)
 
 ![Any of these Required Input - FilterBar](../static/img/sap.m.Input.required.any.png)
 
-対象となる Input の `FilterGroupItem` に `mandatory=true` を設定する。  
-カスタムCSS ( `style.css` ) から SAPUI5の標準 Style Class に定義された **赤字** の Suffix (*) を **青字** に Override する。  
-バリデーションは検索処理時に実行すること。
+Đặt `mandatory=true` cho `FilterGroupItem` của các Input tương ứng.  
+Ghi đè hậu tố **màu đỏ** (*) được định nghĩa trong Style Class chuẩn của SAPUI5 thành **màu xanh** bằng CSS tùy chỉnh (`style.css`).  
+Việc xác thực nên được thực hiện trong quá trình tìm kiếm.
 
 ```css
     /* Change mandatory(*) color in required fields */
@@ -112,9 +111,9 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     }
 ```
 
-#### 必須入力項目が混在する場合
+#### Khi các trường nhập bắt buộc trộn lẫn
 
-検索条件部に通常の必須入力項目も含まれる場合は、専用の Style Class を定義した項目のみ適用する。
+Nếu phần điều kiện tìm kiếm bao gồm cả các trường nhập bắt buộc thông thường, chỉ áp dụng Style Class tùy chỉnh cho các trường được chỉ định.
 
 ```xml
     <!-- e.g. Required -->
@@ -162,17 +161,17 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     }
 ```
 
-## 部分一致(検索)
+## Tìm kiếm khớp một phần
 
-**※ お客様固有の要件。Fiori 標準仕様ではない。**  
-**※ この Input 仕様は生産領域（PPPS）および購買領域（MM）での使用に限定する。**  
-検索条件部の項目における「部分一致検索（あいまい検索）」を行うテキスト入力項目に対し、Input の末尾に虫眼鏡のアイコン（![partial match icon](../static/img/icon.search.png)）を設置する。  
+**※ Yêu cầu riêng của khách hàng. Không phải là chuẩn Fiori.**  
+**※ Quy định Input này chỉ áp dụng cho các lĩnh vực Sản xuất (PPPS) và Mua hàng (MM).**  
+Đối với các trường nhập văn bản dùng để tìm kiếm khớp một phần (tìm kiếm mờ) trong phần điều kiện tìm kiếm, đặt biểu tượng kính lúp (![partial match icon](../static/img/icon.search.png)) ở cuối Input.
 
 ![Partial match Input - FilterBar](../static/img/sap.m.Input.partial.match.png)
 
-対象の Input にStyle Class `inputIconRight search` を追加し、  
-カスタムCSS ( `style.css` ) から SAPUI5の標準 Style Class を Override する。
-※ 今後異なるパターンのアイコン設置を考慮し、Style Class を 分割している。
+Thêm Style Class `inputIconRight search` vào Input tương ứng,  
+và ghi đè Style Class chuẩn của SAPUI5 bằng CSS tùy chỉnh (`style.css`).  
+※ Các Style Class được tách riêng để có thể áp dụng các mẫu đặt biểu tượng khác trong tương lai.
 
 ```xml
     <!-- e.g. -->
@@ -203,15 +202,15 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     }
 ```
 
-## テキスト項目
+## Trường văn bản
 **API Reference:** [class sap.m.Input](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.Input)  
 **Control Sample:** [sap.m.Input](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.Input)
 
-桁数や、入力制約（e.g. 英数字のみ入力可）は要件に応じて設定すること。
+Cài đặt số ký tự và giới hạn nhập liệu (ví dụ: chỉ cho phép chữ và số) theo yêu cầu.
 
-### 文字列
+### Chuỗi
 
-![sap.m.Input](../static/img/sap.m.Input.png)  
+![sap.m.Input](../static/img/sap.m.Input.png)
 
 ```xml
     <!-- e.g. -->
@@ -224,18 +223,18 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     />
 ```
 
-### 数値 / 数量
-数量項目は**整数入力のみ**に制限する。  
-数値項目はその種類、要件に応じて入力制限を設けること。
+### Số / Số lượng
+Các trường số lượng bị giới hạn chỉ nhập **số nguyên**.  
+Các trường số nên được giới hạn nhập theo loại và yêu cầu cụ thể.
 
-| Item type | input possible | e.g.             | Regex                     |
-| --------- | -------------- | ---------------- | ------------------------- |
-| 数量        | 整数のみ           | 在庫数              | `/^-?\d+$/`               |
-| 数量        | 整数のみ           | 発注数              | `/^-?\d+$/`               |
-| 数量        | 整数のみ           | ロット数             | `/^-?\d+$/`               |
-| 数値        | 整数のみ           | 長さ、距離（cm, m, km) | `/^-?\d+$/`               |
-| 数値        | 小数点第1位まで       | 時間(h, min, sec)  | `/^(-?\d+)(\.\d)?$/`      |
-| 数値        | 小数点第2位まで       | 単価               | `/^(-?\d+)(\.\d{1,2})?$/` |
+| Item type | Nhập được        | Ví dụ                 | Regex                     |
+| --------- | ---------------- | -------------------- | ------------------------- |
+| Số lượng  | Chỉ số nguyên    | Số lượng tồn kho       | `/^-?\d+$/`               |
+| Số lượng  | Chỉ số nguyên    | Số lượng đặt hàng     | `/^-?\d+$/`               |
+| Số lượng  | Chỉ số nguyên    | Kích thước lô         | `/^-?\d+$/`               |
+| Số        | Chỉ số nguyên    | Chiều dài, Khoảng cách (cm, m, km) | `/^-?\d+$/` |
+| Số        | Tối đa 1 chữ số thập phân | Thời gian (h, min, sec) | `/^(-?\d+)(\.\d)?$/` |
+| Số        | Tối đa 2 chữ số thập phân | Đơn giá           | `/^(-?\d+)(\.\d{1,2})?$/` |
 
 ```xml
     <!-- e.g. -->
@@ -251,10 +250,10 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     />
 ```
 
-### 金額
-金額項目は、対応する通貨項目の指定値（e.g. `JPY`, `USD`）に基づく表記を原則とする。  
-通貨に応じた動的な表記変更を考慮すること。  
-表記変更処理は JavaScript 標準オブジェクトの [Intl](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl) を使用すること。
+### Số tiền
+Các trường số tiền nên, theo nguyên tắc, hiển thị theo trường tiền tệ tương ứng (ví dụ: `JPY`, `USD`).  
+Cân nhắc thay đổi hiển thị động theo loại tiền tệ.  
+Sử dụng đối tượng chuẩn JavaScript [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) để thực hiện việc định dạng.
 
 ```xml
     <!-- e.g. -->
@@ -287,12 +286,12 @@ Text 表記 および 各種入力形式に応じた Input の Alignment を下�
     },
 ```
 
-### 範囲指定
+### Nhập khoảng
 
-数量、数値などの範囲指定入力。  
-Input Group 内に 2 つのInput (FROM-TO) を設置する。
+Nhập khoảng cho số lượng, số, v.v.  
+Đặt hai Input (TỪ-ĐẾN) trong một Input Group.
 
-![sap.m.Input](../static/img/sap.m.Input.range.png)  
+![sap.m.Input](../static/img/sap.m.Input.range.png)
 
 ```xml
     <!-- e.g. -->
@@ -320,21 +319,22 @@ Input Group 内に 2 つのInput (FROM-TO) を設置する。
     </HBox>
 ```
 
-## 日付
+## Ngày
 
-### 単一選択
+### Chọn đơn
 **API Reference:** [class sap.m.DatePicker](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.DatePicker)  
 **Control Sample:** [sap.m.DatePicker](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.DatePicker)
 
-カレンダー（DatePicker）から単一の日付を選択する項目。  
+Trường để chọn một ngày duy nhất từ lịch (DatePicker).  
 
-| 日付  | displayFormat |
-| --- | ------------- |
-| 年月日 | `yyyy/MM/dd`  |
-| 年月  | `yyyy/MM`     |
-| 年   | `yyyy`        |
+| Ngày | displayFormat |
+| ---- | ------------- |
+| Năm-Tháng-Ngày | `yyyy/MM/dd`  |
+| Năm-Tháng      | `yyyy/MM`     |
+| Năm            | `yyyy`        |
 
-![sap.m.Date{icker}](../static/img/sap.m.DatePicker.png)
+![sap.m.DatePicker](../static/img/sap.m.DatePicker.png)
+
 ```xml
     <!-- e.g. -->
     <DatePicker
@@ -350,20 +350,19 @@ Input Group 内に 2 つのInput (FROM-TO) を設置する。
     />
 ```
 
-### 範囲選択
+### Chọn khoảng
 **API Reference:** [class sap.m.DateRangeSelection](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.DateRangeSelection)  
 **Control Sample:** [sap.m.DateRangeSelection](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.DateRangeSelection)
 
-カレンダー（DatePicker）から日付の範囲 (FROM-TO) を選択する項目。  
+Trường để chọn khoảng ngày (TỪ-ĐẾN) từ lịch (DatePicker).  
 
+| Ngày | displayFormat |
+| ---- | ------------- |
+| Năm-Tháng-Ngày | `yyyy/MM/dd`  |
+| Năm-Tháng      | `yyyy/MM`     |
+| Năm            | `yyyy`        |
 
-| 日付  | displayFormat |
-| --- | ------------- |
-| 年月日 | `yyyy/MM/dd`  |
-| 年月  | `yyyy/MM`     |
-| 年   | `yyyy`        |
-
-![sap.m.DateRangeSelection](../static/img/sap.m.DateRangeSelection.png)  
+![sap.m.DateRangeSelection](../static/img/sap.m.DateRangeSelection.png)
 
 ```xml
     <!-- e.g. -->
@@ -376,18 +375,17 @@ Input Group 内に 2 つのInput (FROM-TO) を設置する。
     />
 ```
 
-要件によっては、DateRangeSelection ではなく DatePicker で範囲選択を行うケースもある。
+Tùy theo yêu cầu, việc chọn khoảng cũng có thể được thực hiện bằng DatePicker thay vì DateRangeSelection.
 
 ![sap.m.DatePicker - Range Select](../static/img/sap.m.DatePicker.range.png)
 
-## ラジオボタン
+## Nút Radio
 **API Reference:** [class sap.m.RadioButtonGroup](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.RadioButtonGroup), [class sap.m.RadioButton](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.RadioButton)  
 **Control Sample:** [sap.m.RadioButtonGroup](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.RadioButtonGroup), [sap.m.RadioButton](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.RadioButton)
 
+Sử dụng cho lựa chọn đơn khi các tùy chọn cố định.
 
-選択肢が固定の単一選択に使用する。
-
-![sap.m.RadioButton](../static/img/sap.m.RadioButton.png)  
+![sap.m.RadioButton](../static/img/sap.m.RadioButton.png)
 
 ```xml
     <!-- e.g. -->
@@ -406,13 +404,13 @@ Input Group 内に 2 つのInput (FROM-TO) を設置する。
     </RadioButtonGroup>
 ```
 
-## チェックボックス
+## CheckBox
 **API Reference:** [class sap.m.CheckBox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.CheckBox)  
 **Control Sample:** [sap.m.CheckBox](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.CheckBox)
 
-フラグの指定や選択した固定の複数選択に使用する。
+Sử dụng cho cờ (flag) hoặc chọn nhiều tùy chọn cố định.
 
-![sap.m.CheckBox](../static/img/sap.m.CheckBox.png)  
+![sap.m.CheckBox](../static/img/sap.m.CheckBox.png)
 
 ```xml
     <!-- e.g. -->
@@ -425,17 +423,17 @@ Input Group 内に 2 つのInput (FROM-TO) を設置する。
     </Hbox>
 ```
 
-## ドロップダウン (プルダウン)
+## Dropdown (Kéo xuống)
 
-### 単一選択
-**API Reference:** [class sap.m.ComboBox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.ComboBox) or [class sap.m.Select](https://sapui5.hana.ondemand.com/sdk/#/api/sap.m.Select)  
-**Control Sample:** [sap.m.ComboBox](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.ComboBox) or [sap.m.Select](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.Select)  
+### Lựa chọn đơn
+**API Reference:** [class sap.m.ComboBox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.ComboBox) hoặc [class sap.m.Select](https://sapui5.hana.ondemand.com/sdk/#/api/sap.m.Select)  
+**Control Sample:** [sap.m.ComboBox](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.ComboBox) hoặc [sap.m.Select](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.Select)  
 
-単一選択のコンボボックス。  
-Two Columns Layout は、要件に応じて対応すること。  
+Combo box cho lựa chọn đơn.  
+Bố cục hai cột (Two Columns Layout) áp dụng tùy theo yêu cầu.  
 
-選択肢の数が 30 件以上となる場合、手入力した値への Suggestion 機能を有する [Combobox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.ComboBox) を採用すること。  
-選択肢の数が 30 件未満となる場合、[Select](https://sapui5.hana.ondemand.com/sdk/#/api/sap.m.Select)  を採用すること。
+Khi số lượng tùy chọn vượt quá 30, sử dụng [ComboBox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.ComboBox) với tính năng gợi ý cho giá trị nhập tay.  
+Khi số lượng tùy chọn dưới 30, sử dụng [Select](https://sapui5.hana.ondemand.com/sdk/#/api/sap.m.Select).
 
 ![sap.m.ComboBox](../static/img/sap.m.ComboBox.png)
 
@@ -454,12 +452,11 @@ Two Columns Layout は、要件に応じて対応すること。
     </ComboBox>
 ```
 
-### 複数選択
+### Lựa chọn nhiều
 **API Reference:** [class sap.m.MultiComboBox](https://sapui5.hana.ondemand.com/sdk/#api/sap.m.MultiComboBox)  
 **Control Sample:** [sap.m.MultiComboBox](https://sapui5.hana.ondemand.com/sdk/#/entity/sap.m.MultiComboBox)
 
-
-複数選択が可能なマルチコンボボックス。
+Multi-combo box cho phép lựa chọn nhiều mục.
 
 ![sap.m.MultiComboBox](../static/img/sap.m.MultiComboBox.png)  
 
@@ -480,21 +477,19 @@ Two Columns Layout は、要件に応じて対応すること。
     </MultiComboBox>
 ```
 
-## ファイル選択
+## Chọn Tệp
 **API Reference:** [class sap.ui.unified.FileUploader](https://sapui5.hana.ondemand.com/sdk/#api/sap.ui.unified.FileUploader)  
 **Control Sample:** [sap.ui.unified.FileUploader](https://sapui5.hana.ondemand.com/#/entity/sap.ui.unified.FileUploader)
 
-
-ファイル選択INPUT。ファイルの読み込みやアップロードに使用。
+Input chọn tệp. Sử dụng để đọc hoặc tải lên tệp.
 
 ![sap.ui.unified.FileUploader](../static/img/sap.ui.unified.FileUploader.png)  
 
 
-## 検索ヘルプ
-**API Reference:** [class sap.m.SelectDialog](https://sapui5.hana.ondemand.com/#/api/sap.m.SelectDialog), [class sap.ui.comp.valuehelpdialog.ValueHelpDialog](https://sapui5.hana.ondemand.com/sdk/#api/sap.ui.comp.valuehelpdialog.ValueHelpDialog)  
+## Trợ giúp tra cứu (Value Help)
+**API Reference:** [class sap.m.SelectDialog](https://sapui5.hana.ondemand.com/#/api/sap.m.SelectDialog), [class sap.ui.comp.valuehelpdialog.ValueHelpDialog](https://sapui5.hana.ondemand.com/sdk/#api/sap.ui.comp.valuehelpdialog.ValueHelpDialog)
 
-目的にあわせた検索ヘルプダイアログから単一もしくは複数選択。  
-検索ヘルプの種類については、「[検索ヘルプの種類](./guide-valuehelp-dialog-design.md)」を参照してください。
+Cho phép chọn đơn hoặc nhiều mục từ hộp thoại trợ giúp tra cứu tùy theo mục đích.  
+Về các loại hộp thoại trợ giúp tra cứu, tham khảo "[Các loại Value Help](./guide-valuehelp-dialog-design.md)".
 
-![sap.m.Input - valueHelp](../static/img/sap.m.Input.valueHelp.png)  
-
+![sap.m.Input - valueHelp](../static/img/sap.m.Input.valueHelp.png)
