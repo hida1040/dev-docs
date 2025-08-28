@@ -22,5 +22,5 @@
 
 ## ValueHelp Dialog Design Guide
 - [Japanese](pages/guide-valuehelp-dialog-design.md)
-- Vietnamese
-- English
+- [Vietnamese](pages/guide-valuehelp-dialog-design_vn.md)
+- [English](pages/guide-valuehelp-dialog-design_en.md)
