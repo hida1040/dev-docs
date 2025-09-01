@@ -49,6 +49,8 @@ Any fixes arising during customer acceptance after the Japan side review (intern
 ### Delete Branch
 Delete the working branch once the merge into the main branch is complete.
 
+![code commit](../static/img/git.merge_codecommit.png)
+
 ## Note: commit
 When writing commit messages, it is recommended to follow the style described in [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).
 

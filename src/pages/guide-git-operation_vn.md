@@ -49,6 +49,8 @@ Các sửa đổi phát sinh trong quá trình chấp nhận của khách hàng 
 ### Xóa Branch
 Xóa nhánh làm việc sau khi merge vào nhánh main đã hoàn tất.
 
+![code commit](../static/img/git.merge_codecommit.png)
+
 ## Ghi chú: commit
 
 Khi viết commit message, khuyến khích áp dụng phong cách được mô tả trong [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).

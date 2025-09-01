@@ -50,6 +50,8 @@ main ブランチへの merge は、日本側のレビュー（内部受入）�
 
 main ブランチへの merge が完了した 作業ブランチは削除すること。
 
+![code commit](../static/img/git.merge_codecommit.png)
+
 ## 補足: commit
 
 Commit メッセージにあたっては、[Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716) を参考に以下のような記述方法の採用を推奨する。 
