@@ -11,6 +11,8 @@ Phần này xác định chính sách và các khuyến nghị về quản lý p
 
 ## Quy tắc vận hành nhánh
 
+![worklow](../static/img/git.workflow_pr.png)
+
 ### Tạo PR (Pull Request)
 Sau khi phát triển hoàn tất, tạo Pull Request từ nhánh làm việc sang nhánh main.  
 Khi Pull Request đã được tạo, thông báo cho reviewer để yêu cầu xem xét.
