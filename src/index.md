@@ -24,3 +24,8 @@
 - [Japanese](pages/guide-valuehelp-dialog-design.md)
 - [Vietnamese](pages/guide-valuehelp-dialog-design_vn.md)
 - [English](pages/guide-valuehelp-dialog-design_en.md)
+
+## Snippets
+- [Japanese](pages/snippets.md)
+- [Vietnamese](pages/snippets_vn.md)
+- [English](pages/snippets_en.md)
