@@ -39,9 +39,9 @@ see: [MDN - Debounce](https://developer.mozilla.org/en-US/docs/Glossary/Debounce
     * @returns 
     */
     function debounce(func, wait, immediate) {
-        var timeout;
+        let timeout;
         return function() {
-                var context = this, args = arguments;
+                const context = this, args = arguments;
                 clearTimeout(timeout);
                 timeout = setTimeout(function() {
                         timeout = null;
