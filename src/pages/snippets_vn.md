@@ -1,10 +1,3 @@
-# スニペット
-
-本項ではアプリケーションで採用可能な JavaScript Snippet を記述します。
-
-## Debounce
-
-### 説明
 # Đoạn mã
 
 Mục này mô tả các đoạn mã JavaScript có thể được áp dụng trong ứng dụng.
